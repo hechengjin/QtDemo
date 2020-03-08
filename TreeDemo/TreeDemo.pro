@@ -15,10 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         dialog.cpp \
     treeitem.cpp \
-    treemodel.cpp
+    treemodel.cpp \
+    datadefine.cpp
 
 HEADERS  += dialog.h \
     treeitem.h \
     treemodel.h \
     datadefine.h \
     datatype.h
+
+RESOURCES += \
+    style.qrc
+
+DISTFILES +=

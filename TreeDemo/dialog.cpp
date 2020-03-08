@@ -1,4 +1,6 @@
 ﻿#include "dialog.h"
+#include "datadefine.h"
+#include <QApplication>
 
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent)
@@ -45,9 +47,42 @@ Dialog::Dialog(QWidget *parent)
 
     _vLayout->addWidget(_mailFolderTree);
 
+    _hLayoutStyle = new QHBoxLayout(this);
+    _hLayoutStyle->setSpacing(6);
+    _hLayoutStyle->setObjectName(QStringLiteral("_hLayoutStyle"));
+    _btnStyle1 = new QPushButton(this);
+    _btnStyle1->setObjectName(QStringLiteral("_btnStyle1"));
+    _btnStyle1->setText("样式1");
+    _hLayoutStyle->addWidget(_btnStyle1);
+    _btnStyle2 = new QPushButton(this);
+    _btnStyle2->setObjectName(QStringLiteral("_btnStyle2"));
+    _btnStyle2->setText("样式2");
+    _hLayoutStyle->addWidget(_btnStyle2);
+    _horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    _hLayoutStyle->addItem(_horizontalSpacer);
+
+
+    _vLayout->addLayout(_hLayoutStyle);
+
+
+    connect(_btnStyle1,SIGNAL(clicked()),this,SLOT(on__btnStyle1_clicked()));
+    connect(_btnStyle2,SIGNAL(clicked()),this,SLOT(on__btnStyle2_clicked()));
+
+    setStyleSheet(getAllFileContent(":/style/style1.qss"));
+
 }
 
 Dialog::~Dialog()
 {
 
+}
+
+void Dialog::on__btnStyle1_clicked()
+{
+     setStyleSheet(getAllFileContent(":/style/style1.qss"));
+}
+
+void Dialog::on__btnStyle2_clicked()
+{
+     setStyleSheet(getAllFileContent(":/style/style2.qss")); //qApp->
 }

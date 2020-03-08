@@ -1,4 +1,4 @@
-#ifndef DIALOG_H
+﻿#ifndef DIALOG_H
 #define DIALOG_H
 
 #include <QDialog>
@@ -14,6 +14,12 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
+
+private slots:
+    void on__btnStyle1_clicked();
+
+    void on__btnStyle2_clicked();
+
 
 private:
     Ui::Dialog *ui;

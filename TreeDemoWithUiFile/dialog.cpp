@@ -1,4 +1,4 @@
-#include "dialog.h"
+﻿#include "dialog.h"
 #include "ui_dialog.h"
 
 Dialog::Dialog(QWidget *parent) :
@@ -12,3 +12,14 @@ Dialog::~Dialog()
 {
     delete ui;
 }
+
+void Dialog::on__btnStyle1_clicked()
+{
+
+}
+
+void Dialog::on__btnStyle2_clicked()
+{
+
+}
+
