@@ -1,0 +1,33 @@
+*.suo
+*.sdf
+*.opensdf
+*.ilk
+*.pdb
+*.vsp
+*.psess
+
+#folder
+build-*/
+build-*/
+GeneratedFiles/
+Debug/
+Release/
+
+
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.tlb
+*.tlh
+*.bak
+*.obj
+*.cache
+*.log
+Win32
