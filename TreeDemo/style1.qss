@@ -1,4 +1,7 @@
-﻿/**********QTreeView**********/
+﻿QDialog {
+ background:#ffffff;
+}
+/**********QTreeView**********/
 QHeaderView::section {
     height:25px;
     color:white;

@@ -6,5 +6,6 @@
     <qresource prefix="/image">
         <file>treeclose.png</file>
         <file>treeopen.png</file>
+        <file>images/find.png</file>
     </qresource>
 </RCC>

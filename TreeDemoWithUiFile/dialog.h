@@ -21,6 +21,8 @@ private slots:
     void on__btnStyle2_clicked();
 
 
+    void on_pushButtonSearch_clicked();
+
 private:
     Ui::Dialog *ui;
 };

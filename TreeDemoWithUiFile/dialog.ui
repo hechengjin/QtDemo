@@ -15,6 +15,9 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QLineEdit" name="lineEdit"/>
+   </item>
+   <item>
     <widget class="QTreeView" name="treeView"/>
    </item>
    <item>
@@ -34,9 +37,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButtonSearch">
        <property name="text">
-        <string>PushButton</string>
+        <string>搜索</string>
        </property>
       </widget>
      </item>

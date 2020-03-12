@@ -16,13 +16,17 @@ SOURCES += main.cpp\
         dialog.cpp \
     treeitem.cpp \
     treemodel.cpp \
-    datadefine.cpp
+    datadefine.cpp \
+    filterwidget.cpp \
+    mysortfilterproxymodel.cpp
 
 HEADERS  += dialog.h \
     treeitem.h \
     treemodel.h \
     datadefine.h \
-    datatype.h
+    datatype.h \
+    filterwidget.h \
+    mysortfilterproxymodel.h
 
 RESOURCES += \
     style.qrc

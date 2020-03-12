@@ -23,3 +23,8 @@ void Dialog::on__btnStyle2_clicked()
 
 }
 
+
+void Dialog::on_pushButtonSearch_clicked()
+{
+
+}
