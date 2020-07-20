@@ -9,48 +9,9 @@ Dialog::Dialog(QWidget *parent)
 {
     resize(446, 404);
 
-    QVector<MailFolderInfo> vecFolderData;
-    MailFolderInfo mfiHotmail;
-    mfiHotmail.id = 1;
-    mfiHotmail.showName = "bigdata_fire@hotmail.com";
-    mfiHotmail.parentId = 0;
-    mfiHotmail.realName = "bigdata_fire@hotmail.com";
-    mfiHotmail.pathName = "/";
-    mfiHotmail.serverID = 1;
-    vecFolderData.push_back(mfiHotmail);
-    MailFolderInfo mfiInbox;
-    mfiInbox.id = 2;
-    mfiInbox.showName = "收件箱";
-    mfiInbox.parentId = 1;
-    mfiInbox.realName = "INBOX";
-    mfiInbox.pathName = "INBOX";
-    mfiInbox.serverID = 1;
-    vecFolderData.push_back(mfiInbox);
-    MailFolderInfo mfiSent;
-    mfiSent.id = 3;
-    mfiSent.showName = "已发送";
-    mfiSent.parentId = 1;
-    mfiSent.realName = "Sent";
-    mfiSent.pathName = "Sent";
-    mfiSent.serverID = 1;
-    vecFolderData.push_back(mfiSent);
-    MailFolderInfo mfiHotmail2;
-    mfiHotmail2.id = 4;
-    mfiHotmail2.showName = "fire@hotmail.com";
-    mfiHotmail2.parentId = 0;
-    mfiHotmail2.realName = "fire@hotmail.com";
-    mfiHotmail2.pathName = "/";
-    mfiHotmail2.serverID = 1;
-    vecFolderData.push_back(mfiHotmail2);
-    MailFolderInfo mfiSent2;
-    mfiSent2.id = 5;
-    mfiSent2.showName = "已发送";
-    mfiSent2.parentId = 4;
-    mfiSent2.realName = "Sent";
-    mfiSent2.pathName = "Sent";
-    mfiSent2.serverID = 1;
-    vecFolderData.push_back(mfiSent2);
 
+
+    reshData();
 
 
     _vLayout = new QVBoxLayout(this);
@@ -106,6 +67,49 @@ Dialog::~Dialog()
 
 }
 
+void Dialog::reshData()
+{
+    MailFolderInfo* mfiHotmail = new MailFolderInfo();
+    mfiHotmail->id = 1;
+    mfiHotmail->showName = "bigdata_fire@hotmail.com";
+    mfiHotmail->parentId = 0;
+    mfiHotmail->realName = "bigdata_fire@hotmail.com";
+    mfiHotmail->pathName = "/";
+    mfiHotmail->serverID = 1;
+    vecFolderData.push_back(mfiHotmail);
+    MailFolderInfo* mfiInbox = new MailFolderInfo();
+    mfiInbox->id = 2;
+    mfiInbox->showName = "收件箱";
+    mfiInbox->parentId = 1;
+    mfiInbox->realName = "INBOX";
+    mfiInbox->pathName = "INBOX";
+    mfiInbox->serverID = 1;
+    vecFolderData.push_back(mfiInbox);
+    MailFolderInfo* mfiSent = new MailFolderInfo();
+    mfiSent->id = 3;
+    mfiSent->showName = "已发送";
+    mfiSent->parentId = 1;
+    mfiSent->realName = "Sent";
+    mfiSent->pathName = "Sent";
+    mfiSent->serverID = 1;
+    vecFolderData.push_back(mfiSent);
+    MailFolderInfo* mfiHotmail2 = new MailFolderInfo();
+    mfiHotmail2->id = 4;
+    mfiHotmail2->showName = "fire@hotmail->com";
+    mfiHotmail2->parentId = 0;
+    mfiHotmail2->realName = "fire@hotmail->com";
+    mfiHotmail2->pathName = "/";
+    mfiHotmail2->serverID = 1;
+    vecFolderData.push_back(mfiHotmail2);
+    MailFolderInfo* mfiSent2 = new MailFolderInfo();
+    mfiSent2->id = 5;
+    mfiSent2->showName = "已发送";
+    mfiSent2->parentId = 4;
+    mfiSent2->realName = "Sent";
+    mfiSent2->pathName = "Sent";
+    mfiSent2->serverID = 1;
+    vecFolderData.push_back(mfiSent2);
+}
 void Dialog::textFilterChanged()
 {
 //    QMessageBox msgBox;
@@ -116,7 +120,12 @@ void Dialog::textFilterChanged()
 
 void Dialog::on__btnStyle1_clicked()
 {
-     setStyleSheet(getAllFileContent(":/style/style1.qss"));
+    qDeleteAll(vecFolderData);
+    vecFolderData.clear();
+    reshData();
+    _mailFolderModel->setupModelData(vecFolderData);
+     //setStyleSheet(getAllFileContent(":/style/style1.qss"));
+
 }
 
 void Dialog::on__btnStyle2_clicked()

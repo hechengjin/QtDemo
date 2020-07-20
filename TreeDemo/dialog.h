@@ -20,6 +20,7 @@ public:
     ~Dialog();
 
 
+    void reshData();
 private slots:
     void on__btnStyle1_clicked();
     void on__btnStyle2_clicked();
@@ -36,6 +37,8 @@ private:
     QPushButton *_btnStyle1;
     QSpacerItem *_horizontalSpacer;
     QPushButton *_btnStyle2;
+
+    QVector<MailFolderInfo*> vecFolderData;
 };
 
 

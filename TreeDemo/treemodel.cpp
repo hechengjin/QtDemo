@@ -168,19 +168,19 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 }
 //! [8]
 
-void TreeModel::setupModelData(const QVector<MailFolderInfo> &vecData)
+void TreeModel::setupModelData(const QVector<MailFolderInfo*> &vecData)
 {
     QList<TreeItem*> parents;
     parents << headItem; //第一项放标题头，其下的都为树项数据
     //添加第一级目录数据
      QList<TreeItem*> top1List;
     for (int i = 0; i < vecData.size(); ++i) {
-        MailFolderInfo mfi = vecData.at(i);
-        if(mfi.parentId == DEFAULT_VALUE_ZERO){
+        MailFolderInfo* mfi = vecData.at(i);
+        if(mfi->parentId == DEFAULT_VALUE_ZERO){
             QList<QVariant> columnData;
             //只显示2两列，第1列名称 第2列为id
-            columnData << mfi.showName << mfi.id;
-            qDebug() << mfi.showName << mfi.id;
+            columnData << mfi->showName << mfi->id;
+            qDebug() << mfi->showName << mfi->id;
             TreeItem* _item = new TreeItem(columnData, parents.last());
             parents.last()->appendChild(_item);
             top1List << _item;
@@ -192,11 +192,11 @@ void TreeModel::setupModelData(const QVector<MailFolderInfo> &vecData)
         uint32_t curId = top1List.at(i)->data(1).toInt();
         qDebug() << top1List.at(i)->data(0).toString() << top1List.at(i)->data(1).toString() << curId;
         for (int j = 0; j < vecData.size(); ++j) {
-            MailFolderInfo mfi = vecData.at(j);
-            if(mfi.parentId == curId) {
+            MailFolderInfo* mfi = vecData.at(j);
+            if(mfi->parentId == curId) {
                 QList<QVariant> columnData;
                 //只显示2两列，第1列名称 第2列为上级id
-                columnData << mfi.showName << mfi.id;
+                columnData << mfi->showName << mfi->id;
                 TreeItem* _item = new TreeItem(columnData, top1List.at(i));
                 top1List.at(i)->appendChild(_item);
             }

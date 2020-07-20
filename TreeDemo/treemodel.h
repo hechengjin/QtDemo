@@ -68,7 +68,7 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
 public:
-    void setupModelData(const QVector<MailFolderInfo> &vecData);
+    void setupModelData(const QVector<MailFolderInfo*> &vecData);
 private:
     TreeItem *headItem;
 };
