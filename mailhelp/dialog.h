@@ -2,7 +2,7 @@
 #define DIALOG_H
 
 #include <QDialog>
-
+#include <MailCore/MailCore.h>
 namespace Ui {
 class Dialog;
 }
@@ -14,6 +14,9 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::Dialog *ui;
