@@ -16,14 +16,27 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>60</y>
+     <x>260</x>
+     <y>220</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>test</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_Gmail">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GMail</string>
    </property>
   </widget>
  </widget>

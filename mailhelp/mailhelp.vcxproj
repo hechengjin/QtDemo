@@ -67,7 +67,7 @@
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <QtInstall>Qt5.12.0_msvc2017</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;network;networkauth;widgets;serialport;websockets</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <QtInstall>Qt5.12.0_msvc2017</QtInstall>
@@ -197,12 +197,19 @@ xcopy /e /r /y Externals\lib\icuuc54.dll $(OutDir)
 xcopy /e /r /y Externals\lib\icuin54.dll $(OutDir)
 xcopy /e /r /y Externals\lib\libsasl2.dll $(OutDir)
 xcopy /e /r /y Externals\lib\SSLEAY32MD.dll $(OutDir)
-xcopy /e /r /y Externals\lib\icudt54.dll $(OutDir)</Command>
+xcopy /e /r /y Externals\lib\icudt54.dll $(OutDir)
+xcopy /e /r /y Externals\lib\libeay32.dll $(OutDir)
+xcopy /e /r /y Externals\lib\ssleay32.dll $(OutDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="basehttp.cpp" />
     <ClCompile Include="dialog.cpp" />
+    <ClCompile Include="EchoServer.cpp" />
+    <ClCompile Include="gmailtokenapi.cpp" />
+    <ClCompile Include="httpSvr.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="dialog.h">
@@ -229,6 +236,20 @@ xcopy /e /r /y Externals\lib\icudt54.dll $(OutDir)</Command>
   <ItemGroup>
     <QtUic Include="dialog.ui">
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="EchoServer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="httpSvr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="basehttp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.h" />
+    <QtMoc Include="gmailtokenapi.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

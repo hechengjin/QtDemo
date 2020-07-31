@@ -1,0 +1,32 @@
+<html>
+<body>
+<button onClick="initWebSocket();">Connect</button>
+<br>
+<input type="text" id="messageInput">
+<button onClick="sendMessage();">Send message</button>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var websocket = new WebSocket("ws://localhost:12131");
+
+   
+    websocket.onopen = function () {
+        console.log('链接开始了')
+    }
+    websocket.onmessage = function (evt) {
+        var received_msg = evt.data;
+        console.log("数据已接收...", received_msg);
+    };
+    websocket.onclose = function () {
+        // 关闭 websocket
+        alert("连接已关闭...");
+    };
+    //直接开启websocket
+  
+    function sendMessage() {
+        websocket.send(document.getElementById("messageInput").value);
+    }
+
+</script>

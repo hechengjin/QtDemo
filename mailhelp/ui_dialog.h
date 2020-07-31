@@ -20,6 +20,7 @@ class Ui_Dialog
 {
 public:
     QPushButton *pushButton;
+    QPushButton *pushButton_Gmail;
 
     void setupUi(QDialog *Dialog)
     {
@@ -28,7 +29,10 @@ public:
         Dialog->resize(400, 300);
         pushButton = new QPushButton(Dialog);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(90, 60, 75, 23));
+        pushButton->setGeometry(QRect(260, 220, 75, 23));
+        pushButton_Gmail = new QPushButton(Dialog);
+        pushButton_Gmail->setObjectName(QString::fromUtf8("pushButton_Gmail"));
+        pushButton_Gmail->setGeometry(QRect(30, 30, 75, 23));
 
         retranslateUi(Dialog);
 
@@ -39,6 +43,7 @@ public:
     {
         Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", nullptr));
         pushButton->setText(QApplication::translate("Dialog", "test", nullptr));
+        pushButton_Gmail->setText(QApplication::translate("Dialog", "GMail", nullptr));
     } // retranslateUi
 
 };
