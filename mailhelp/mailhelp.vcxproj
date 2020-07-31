@@ -66,8 +66,8 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <QtInstall>Qt5.12.0_msvc2017</QtInstall>
-    <QtModules>core;gui;network;networkauth;widgets;serialport;websockets</QtModules>
+    <QtInstall>Qt5.12.5_x86</QtInstall>
+    <QtModules>core;gui;network;networkauth;serialport;webchannel;webengine;webenginewidgets;websockets;widgets</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <QtInstall>Qt5.12.0_msvc2017</QtInstall>

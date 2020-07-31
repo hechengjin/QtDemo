@@ -30,6 +30,7 @@ private:
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_Gmail_clicked();
+    void on_pushButton_proxy_clicked();
     void on_codeGen(QString code);
     void on_AccessTokenGen(QString accessToken);
 

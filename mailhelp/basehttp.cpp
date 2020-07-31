@@ -47,6 +47,11 @@ void QBaseHttp::setHeader(QNetworkRequest::KnownHeaders header, const QVariant& 
     httpRequest.setHeader(header, value);
 }
 
+void QBaseHttp::setProxy(const QNetworkProxy& proxy)
+{
+	networkAccessManager.setProxy(proxy);
+}
+
 void QBaseHttp::get(const QString url)
 {
     httpRequest.setUrl(QUrl(url));

@@ -4,6 +4,9 @@
 #include <QtDebug>
 #include <QMessageBox>
 #include <QDesktopServices>
+#include <QtWebEngine/QtWebEngine>
+#include <QNetworkProxy>
+#include <QSslSocket>
 #include <QUrl>
 #include "util.h"
 #include "common.h"
@@ -23,6 +26,10 @@ Dialog::Dialog(QWidget *parent) :
 	QObject::connect(server, &httpSvr::codeGen, this, &Dialog::on_codeGen);
 	pGmailTokenApi = new QGmailTokenApi();
 	QObject::connect(pGmailTokenApi, &QGmailTokenApi::accessTokenGen, this, &Dialog::on_AccessTokenGen);
+
+
+	//本地只要打开PAC模式 就能打开google
+	ui->webEngineView_Google->load(QUrl(QStringLiteral("https://www.google.com/")));
 }
 
 Dialog::~Dialog()
@@ -48,7 +55,7 @@ QUrl Dialog::genGmailOAuth2()
 static void testIMAP_GMAIL(QString accessToken)
 {
 	email = MCSTR("hechengjin.com@gmail.com");
-	password = MCSTR("HCJGMi94");
+	password = MCSTR("xxxi94");
 	displayName = MCSTR("hcj");
 
 	mailcore::IMAPSession* session;
@@ -62,7 +69,7 @@ static void testIMAP_GMAIL(QString accessToken)
 	session->setConnectionType(mailcore::ConnectionTypeTLS);
 	session->setOAuth2Token(QSTRING2STRING(accessToken));
 	session->setAuthType(mailcore::AuthTypeXOAuth2);
-
+	//mailcore2设置代理？ https://github.com/MailCore/mailcore2/issues/408  https://github.com/MailCore/mailcore2/issues/1576  
 	session->connect(&error);
 	session->login(&error);
 	session->select(MCSTR("INBOX"), &error);
@@ -73,11 +80,89 @@ static void testIMAP_GMAIL(QString accessToken)
 
 void Dialog::on_pushButton_Gmail_clicked()
 {
+	
+	QNetworkProxy proxy;
+	proxy.setType(QNetworkProxy::Socks5Proxy);//设置类型
+	proxy.setHostName("127.0.0.1");//设置代理服务器地址
+	proxy.setPort(1080);//设置端口
+	//proxy.setUser("");//设置用户名,可以不填写
+	//proxy.setPassword("");//设置，可以不填写
+	//QNetworkProxy::setApplicationProxy(proxy); //或
+	pGmailTokenApi->setProxy(proxy);
+
 	//server = new EchoServer(serverPort, true);
 	QDesktopServices::openUrl(genGmailOAuth2());
 	//testIMAP_GMAIL("ya29.a0AfH6SMABtywvqk0NrzlgxMWW - Mt2DE5zSAInEvES_UjCBEkDEBRUaTavAOIsnkAoVsbWFjEQqpc35vB33qEshPIcVzilnFuu4MA0NRVwSFM83aMZ5HgtIi_uwEmioHwFtmwWD8PqnolkWWP3DMeW05QnBuZxs7HbcKo");
 	//QObject::connect(server, &EchoServer::closed, this, &QCoreApplication::quit);
 	//
+}
+
+void Dialog::on_pushButton_proxy_clicked()
+{
+	//http://slproweb.com/products/Win32OpenSSL.html 下载相应的安装文件 1.1.x之前的版本为libeay32.dll ssleay32.dll 之后的版本为 libcrypto-1_1-x64.dll libssl-1_1-x64.dll 
+	//qDebug() << QSslSocket::sslLibraryBuildVersionString(); //"OpenSSL 1.1.1b  26 Feb 2019" 
+
+	QNetworkProxy proxy;
+	proxy.setType(QNetworkProxy::HttpProxy);//设置类型
+	proxy.setHostName("127.0.0.1");//设置代理服务器地址
+	proxy.setPort(1080);//设置端口
+	//proxy.setUser("");//设置用户名,可以不填写
+	//proxy.setPassword("");//设置，可以不填写
+	QString url = "https://www.google.com/";
+
+	
+	QNetworkProxy::setApplicationProxy(proxy); //或
+	//pGmailTokenApi->setProxy(proxy);
+	pGmailTokenApi->get(url);
+	
+	/*
+	QString strPageContent;
+	QNetworkAccessManager* mManager = new QNetworkAccessManager();
+
+	//获取系统代理并设置
+	//QNetworkProxyQuery proxyQuery(QUrl("https://www.baidu.com"));
+	//QList<QNetworkProxy> proxyList = QNetworkProxyFactory::systemProxyForQuery(proxyQuery);
+	//if (proxyList.count() > 0)
+	//{
+	//	mManager->setProxy(proxyList.at(0));
+	//}
+	mManager->setProxy(proxy);
+
+	//HTTP GET
+	QNetworkRequest request;
+	request.setUrl(QUrl(url));
+
+	QEventLoop loop;
+	QNetworkReply* reply = mManager->get(request);
+	connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+	loop.exec();
+
+	QString strCodec;
+	//获取编码方式,用于解码
+	QStringList contentTypeList = reply->header(QNetworkRequest::ContentTypeHeader).toString().split(";");
+	foreach(QString content, contentTypeList) {
+		content = content.trimmed();
+		if (content.toLower().startsWith("charset") && content.split("=").size() > 1)
+		{
+			strCodec = content.split("=").at(1).trimmed();;
+			break;
+		}
+	}
+
+	QByteArray datagram = reply->readAll();
+	if (strCodec.isEmpty())
+	{
+		strPageContent.append(datagram);
+	}
+	else
+	{
+		QTextCodec* codec = QTextCodec::codecForName(strCodec.toStdString().c_str());
+		strPageContent = codec->toUnicode(datagram);
+	}
+
+	*/
+
+
 }
 
 

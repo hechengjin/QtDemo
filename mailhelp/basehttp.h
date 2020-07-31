@@ -17,6 +17,7 @@ public:
 
     void setRawHeader(const QByteArray& headerName, const QByteArray& value);
     void setHeader(QNetworkRequest::KnownHeaders header, const QVariant& value);
+    void setProxy(const QNetworkProxy& proxy);
     void get(const QString url);
     void post(const QString url, const QByteArray &data);
 protected:
