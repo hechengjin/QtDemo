@@ -199,7 +199,9 @@ xcopy /e /r /y Externals\lib\libsasl2.dll $(OutDir)
 xcopy /e /r /y Externals\lib\SSLEAY32MD.dll $(OutDir)
 xcopy /e /r /y Externals\lib\icudt54.dll $(OutDir)
 xcopy /e /r /y Externals\lib\libeay32.dll $(OutDir)
-xcopy /e /r /y Externals\lib\ssleay32.dll $(OutDir)</Command>
+xcopy /e /r /y Externals\lib\ssleay32.dll $(OutDir)
+xcopy /e /r /y Externals\lib\libcrypto-1_1.dll $(OutDir)
+xcopy /e /r /y Externals\lib\libssl-1_1.dll $(OutDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
